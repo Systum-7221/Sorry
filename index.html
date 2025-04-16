@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forgive Me issue chlna 🥺</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: url('fur-background.jpg') no-repeat center center/cover;
+    }
+
+    .slide {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .active {
+      display: block;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .message {
+      font-size: 1.2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 90%;
+      white-space: pre-wrap;
+    }
+
+    .button-container {
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .yes-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .yes-btn:hover {
+      box-shadow: 0 0 10px #4caf50;
+    }
+
+    .no-btn {
+      background-color: #f44336;
+      color: white;
+      animation: shake 1s infinite;
+    }
+
+    .no-btn:hover {
+      box-shadow: 0 0 10px #f44336;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+
+    .puppy {
+      width: 180px;
+      margin: 10px auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .glow {
+      text-shadow: 0 0 6px pink, 0 0 10px red;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    #music-control {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: white;
+      color: black;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" autoplay muted loop>
+    <source src="chalo-jaane-do.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="slide active" id="slide1">
+    <div class="message">
+      I KNOW I MESSED UP!!😔<br><br>
+      Janne anjane mai hrr bar glti krke terko hurt kr hi deta hu na mai....<br>
+      Please muje maff kr de...<br>
+      I will change myself more....<br>
+      mai apni stupid dost ko nhi khona chahta kisi stupid sii baat ke liye....<br>
+      pleasee😭😭
+    </div>
+    <div class="button-container">
+      <button class="btn yes-btn" onclick="goToSlide(2)">Next</button>
+    </div>
+  </div>
+
+  <div class="slide" id="slide2">
+    <h2 class="glow">Forgive Me? 🥺</h2>
+    <div class="button-container">
+      <button class="btn yes-btn" onclick="yesClicked()">Yes</button>
+      <button class="btn no-btn" onclick="noClicked()">No</button>
+    </div>
+  </div>
+
+  <div class="slide" id="slide3">
+    <video class="puppy" autoplay loop muted>
+      <source src="sad-puppy.mp4" type="video/mp4" />
+    </video>
+    <div class="message">
+      Please Chalana maan ja na... am guilty😭 <br>
+      PLEASE PLEASE PLEASE 😭😭
+    </div>
+    <div class="button-container">
+      <button class="btn no-btn" onclick="retry()">Try Again</button>
+    </div>
+    <div id="music-control" onclick="stopMusic()">Stop Music</div>
+  </div>
+
+  <div class="slide" id="slide4">
+    <video class="puppy" autoplay loop muted>
+      <source src="happy-puppy.mp4" type="video/mp4" />
+    </video>
+    <div class="message glow">
+      Thankyouuu soo much Dumboooo for giving me a chance again,<br>
+      you mean a lot to me and I will do everything to make you happy again!!<br>
+      I will try my best!!
+    </div>
+    <div class="button-container">
+      <button class="btn yes-btn" onclick="goToSlide(5)">Next</button>
+    </div>
+  </div>
+
+  <div class="slide" id="slide5">
+    <img src="img.jpg" style="border: 3px solid #000;" />
+
+    <div class="message glow">
+      YOU ARE THE BESTEST BUDDY...... MY 'BAE'🥹
+    </div
+  </div>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      audio.play().catch(() => {
+        console.log('Waiting for user interaction to play music...');
+      });
+
+      const enableAudio = () => {
+        audio.muted = false;
+        audio.play();
+        document.removeEventListener('click', enableAudio);
+      };
+
+      document.addEventListener('click', enableAudio);
+    });
+
+    function goToSlide(n) {
+      document.querySelectorAll('.slide').forEach(slide => slide.classList.remove('active'));
+      document.getElementById('slide' + n).classList.add('active');
+    }
+
+    function noClicked() {
+      goToSlide(3);
+      audio.play();
+    }
+
+    function yesClicked() {
+      audio.pause();
+      goToSlide(4);
+    }
+
+    function retry() {
+      goToSlide(2);
+    }
+
+    function stopMusic() {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  </script>
+</body>
+</html>
